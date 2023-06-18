@@ -1,3 +1,39 @@
+<h2>0.4 (18 June 2023)</h2>
+improve the solution from 0.3 to be fit to production
+
+remove from rollup.config.js
+
+```
+  external: ['zod'] 
+```
+
+looking at <a href='https://rollupjs.org/troubleshooting/#warning-treating-module-as-external-dependency'>The warning docs</a> you can see that beside 'external' you can use @rollup/plugin-node-resolve
+
+so 
+
+```
+npm i -D @rollup/plugin-node-resolve
+```
+
+now add to rollup.config.js
+
+```
+...
+import { nodeResolve } from '@rollup/plugin-node-resolve';
+....
+const plugins = [typescript(),nodeResolve()];
+....
+
+```
+
+invoke
+```
+npm run build
+npm run dev
+```
+
+THe following should work clean and dist/index.js has zod code , thus ready for production
+
 <h2>0.3 (18 June 2023)</h2>
 <h3>Introduction</h3>
 use rollup to build and run index.ts with import zod

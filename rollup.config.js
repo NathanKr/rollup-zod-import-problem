@@ -1,8 +1,9 @@
 import typescript from "@rollup/plugin-typescript";
+import { nodeResolve } from '@rollup/plugin-node-resolve';
 
 const DIST_DIRECTORY = "dist";
 const format = "esm";
-const plugins = [typescript()];
+const plugins = [typescript(),nodeResolve()];
 
 export default {
   input: "src/index.ts",
@@ -11,5 +12,4 @@ export default {
     format,
   },
   plugins,
-  external: ['zod'] 
 };

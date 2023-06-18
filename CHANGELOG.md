@@ -1,3 +1,81 @@
+<h2>0.3 (18 June 2023)</h2>
+<h3>Introduction</h3>
+use rollup to build and run index.ts with import zod
+
+<h3>Motivation</h3>
+I have a browser extension typescript project with rollup . I use rollup because there are few entry points(poup,content,background) . I have used @rollup/plugin-typescript before <a href='https://github.com/NathanKr/rollup-plugin-complex-playground'>rollup-plugin-complex-playground</a> and it is working but here i import zod and 
+
+<h3>Setup</h3>
+
+install rollup and its plugin
+
+```
+npm i -D rollup @rollup/plugin-typescript tslib
+```
+
+create rollup.config.js
+
+```
+import typescript from "@rollup/plugin-typescript";
+
+const DIST_DIRECTORY = "dist";
+const format = "esm";
+const plugins = [typescript()];
+
+export default {
+  input: "src/index.ts",
+  output: {
+    dir: DIST_DIRECTORY,
+    format,
+  },
+  plugins,
+};
+
+
+```
+
+remove the scripts from package.json and use instead
+
+```
+    "build": "rollup -c -w",
+    "dev": "node --watch dist/index.js",
+    "start": "node  dist/index.js"
+```
+
+
+invoke build script
+
+```
+npm run build
+```
+You will get and error 
+
+```
+bundles src/index.ts → dist...
+(!) Unresolved dependencies
+https://rollupjs.org/troubleshooting/#warning-treating-module-as-external-dependency
+zod (imported by "src/index.ts")
+```
+
+solution 1 :
+
+add to rollup.config.js
+
+```
+  external: ['zod'] 
+```
+
+now it is compililing via build and you can run it via dev or start
+
+<h3>solution limitation</h3>
+you will see 
+
+```
+import { z } from 'zod';
+```
+looking in dist/index.js. thus node_modules is required and this may be solution for development not production 
+
+
 <h2>0.2 (18 June 2023)</h2>
 <h3>Motivation</h3>
 using index.js is easy but what happen if we change index extension from .js to .ts
@@ -31,7 +109,7 @@ npm i zod
 
 create index.js file
 ```
-import z from 'zod';
+import {z} from 'zod';
 console.log('index.js is starting ...');
 
 const userSchema = z.object({name : z.string(),age : z.number()})

@@ -3,10 +3,11 @@
   "version": "1.0.0",
   "description": "<h2>Motivation</h2>\r Given a simple one file index.js project which import zod you have a problem",
   "main": "index.js",
-  "type":"module",
+  "type": "module",
   "scripts": {
-    "dev": "node --watch src/index.js",
-    "build": "tsc src/index.ts"
+    "build": "rollup -c -w",
+    "dev": "node --watch dist/index.js",
+    "start": "node  dist/index.js"
   },
   "repository": {
     "type": "git",
@@ -20,6 +21,11 @@
   },
   "homepage": "https://github.com/NathanKr/rollup-zod-import-problem#readme",
   "dependencies": {
+    "tslib": "^2.5.3",
     "zod": "^3.21.4"
+  },
+  "devDependencies": {
+    "@rollup/plugin-typescript": "^11.1.1",
+    "rollup": "^3.25.1"
   }
 }

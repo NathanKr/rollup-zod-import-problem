@@ -21,7 +21,6 @@
   },
   "homepage": "https://github.com/NathanKr/rollup-zod-import-problem#readme",
   "dependencies": {
-    "tslib": "^2.5.3",
     "zod": "^3.21.4"
   },
   "devDependencies": {

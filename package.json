@@ -1,0 +1,24 @@
+{
+  "name": "rollup-zod-import-problem",
+  "version": "1.0.0",
+  "description": "<h2>Motivation</h2>\r Given a simple one file index.js project which import zod you have a problem",
+  "main": "index.js",
+  "type":"module",
+  "scripts": {
+    "dev": "node --watch src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NathanKr/rollup-zod-import-problem.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NathanKr/rollup-zod-import-problem/issues"
+  },
+  "homepage": "https://github.com/NathanKr/rollup-zod-import-problem#readme",
+  "dependencies": {
+    "zod": "^3.21.4"
+  }
+}
